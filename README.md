@@ -1,5 +1,7 @@
 # Operationcode::Slack
 
+[![Build Status](https://travis-ci.org/OperationCode/operationcode-slack.svg?branch=master)](https://travis-ci.org/OperationCode/operationcode-slack)
+
 This gem provides a common interface to slack for the Operation Code platform.
 
 ## Installation
