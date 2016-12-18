@@ -1,7 +1,7 @@
-# Operationcode::Slack
+# [Operationcode::Slack](https://github.com/OperationCode/operationcode-slack)
 
 [![Build Status](https://travis-ci.org/OperationCode/operationcode-slack.svg?branch=master)](https://travis-ci.org/OperationCode/operationcode-slack)
-[![Code Climate](https://codeclimate.com/github/OperationCode/operationcode-slack/badges/a.svg)](https://codeclimate.com/github/OperationCode/operationcode-slack)
+[![Code Climate](https://codeclimate.com/github/OperationCode/operationcode-slack/badges/gpa.svg)](https://codeclimate.com/github/OperationCode/operationcode-slack)
 [![Test Coverage](https://codeclimate.com/github/OperationCode/operationcode-slack/badges/coverage.svg)](https://codeclimate.com/github/OperationCode/operationcode-slack/coverage)
 
 This gem provides a common interface to slack for the Operation Code platform.
