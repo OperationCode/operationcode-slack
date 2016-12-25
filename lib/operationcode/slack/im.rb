@@ -1,9 +1,6 @@
 module Operationcode
   module Slack
     class Im
-      def self.user(user, message)
-      end
-
       def initialize(user:)
         @user = user
       end

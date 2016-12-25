@@ -8,7 +8,7 @@ class Operationcode::Slack::ImTest < Minitest::Test
 
   def test_can_im_a_user
     ENV.stubs(:fetch).returns('mock_token')
-    HTTParty.expects(:post).twice.with(
+    HTTParty.expects(:post).once.with(
       'https://slack.com/api/chat.postMessage',
        body: { token: 'mock_token', channel: '@test_user_name', text: 'this is a test message', as_user: false, username: 'OperationCodeBot' }
     )
