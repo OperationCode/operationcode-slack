@@ -23,4 +23,16 @@ class Operationcode::Slack::ApiTest < Minitest::Test
     HTTParty.expects(:post).with('https://slack.com/api/users.info', body: test_data)
     Operationcode::Slack::Api::UsersInfo.post with_data: test_data
   end
+
+  def test_it_can_open_an_im
+    test_data = { test_key: 'test_value' }
+    HTTParty.expects(:post).with('https://slack.com/api/im.open', body: test_data)
+    Operationcode::Slack::Api::ImOpen.post with_data: test_data
+  end
+
+  def test_it_can_send_a_message
+    test_data = { test_key: 'test_value' }
+    HTTParty.expects(:post).with('https://slack.com/api/chat.postMessage', body: test_data)
+    Operationcode::Slack::Api::ChatPostMessage.post with_data: test_data
+  end
 end
