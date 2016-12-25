@@ -14,6 +14,8 @@ module Operationcode
       # If you'd like to add addtional methods to the class define it in its own file in the api dir (see OauthAccess)
       class ChannelsInvite < Operationcode::Slack::Api; end
       class UsersInfo < Operationcode::Slack::Api; end
+      class ImOpen < Operationcode::Slack::Api; end
+      class ChatPostMessage < Operationcode::Slack::Api; end
 
       def self.post(with_data:)
         HTTParty.post(api_url, body: with_data)
@@ -23,8 +25,16 @@ module Operationcode
         SLACK_API_BASE + convert_class_name_to_api_name
       end
 
+      private
+
+      # Slack API methods are in the format of 'group.method', (eg chat.postMessage) and are case sensitive.
+      # This ugly method just converts ruby class names to the correct URL format
       def self.convert_class_name_to_api_name
-        self.name.to_s.gsub!(/([a-z\d])([A-Z])/,'\1.\2').downcase.split('::').last
+        self.name.to_s.split('::').last.match(/(.*?[a-z])([A-Z].*)/)
+        group = $1
+        method = $2
+
+        "#{group.downcase}.#{method.camelize(:lower)}"
       end
     end
   end
