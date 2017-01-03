@@ -6,13 +6,13 @@ module Operationcode
       end
 
       def deliver(text)
-        Operationcode::Slack::Api::ChatPostMessage.post with_data: api_params.merge({ text: text })
+        im = Operationcode::Slack::Api::ImOpen.post(with_data: { token: ENV.fetch('SLACK_TOKEN'), user: @user })
+        Operationcode::Slack::Api::ChatPostMessage.post with_data: api_params.merge({ channel: im['channel']['id'], text: text })
       end
 
       def api_params
         {
           token: ENV.fetch('SLACK_TOKEN'),
-          channel: @user,
           as_user: true,
           username: 'OperationCodeBot'
         }
