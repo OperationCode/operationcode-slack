@@ -13,7 +13,7 @@ module Operationcode
         {
           token: ENV.fetch('SLACK_TOKEN'),
           channel: @user,
-          as_user: false,
+          as_user: true,
           username: 'OperationCodeBot'
         }
       end
