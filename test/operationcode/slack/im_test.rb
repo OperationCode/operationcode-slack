@@ -15,10 +15,27 @@ class Operationcode::Slack::ImTest < Minitest::Test
 
     HTTParty.expects(:post).once.with(
       'https://slack.com/api/chat.postMessage',
-       body: { token: 'mock_token', channel: mock_im_open_response['channel']['id'], text: 'this is a test message', as_user: true, username: 'OperationCodeBot' }
+       body: { token: 'mock_token', channel: mock_im_open_response['channel']['id'], text: 'this is a test message', as_user: false, username: 'operationcodebot' }
     )
 
     im = Operationcode::Slack::Im.new(user: 'TEST_USER_ID')
+    im.deliver('this is a test message')
+  end
+
+  def test_can_provide_a_channel_to_use
+    ENV.stubs(:fetch).returns('mock_token')
+
+    HTTParty.expects(:post).never.with(
+      'https://slack.com/api/im.open',
+       body: { token: 'mock_token', user: 'TEST_USER_ID' }
+    )
+
+    HTTParty.expects(:post).once.with(
+      'https://slack.com/api/chat.postMessage',
+       body: { token: 'mock_token', channel: 'SPECIFIED_CHAN', text: 'this is a test message', as_user: false, username: 'operationcodebot' }
+    )
+
+    im = Operationcode::Slack::Im.new(user: 'TEST_USER_ID', channel: 'SPECIFIED_CHAN')
     im.deliver('this is a test message')
   end
 
