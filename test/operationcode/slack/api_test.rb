@@ -12,8 +12,6 @@ class Operationcode::Slack::ApiTest < Minitest::Test
   end
 
   def test_it_can_do_o_auth
-    ENV.stubs(:fetch).with('SLACK_CLIENT_ID').returns('TEST_ID')
-    ENV.stubs(:fetch).with('SLACK_CLIENT_SECRET').returns('TEST_SECRET')
     HTTParty.expects(:post).with('https://slack.com/api/oauth.access', body: { client_id: 'TEST_ID', client_secret: 'TEST_SECRET', code: '1234' })
     Operationcode::Slack::Api::OauthAccess.post with_data: { code: '1234' }
   end
