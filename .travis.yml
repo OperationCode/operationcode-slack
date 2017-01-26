@@ -2,3 +2,6 @@ language: ruby
 addons:
   code_climate:
     repo_token: 3fedf540189b9a4cab8cd906f464d2db431b8d76888d74828c80db4c14c2f065
+    
+after_success:
+  - bundle exec codeclimate-test-reporter 
