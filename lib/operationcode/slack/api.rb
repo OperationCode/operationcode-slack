@@ -16,6 +16,7 @@ module Operationcode
       class UsersInfo < Operationcode::Slack::Api; end
       class ImOpen < Operationcode::Slack::Api; end
       class ChatPostMessage < Operationcode::Slack::Api; end
+      class ChatUpdate < Operationcode::Slack::Api; end
 
       def self.post(with_data:)
         HTTParty.post(api_url, body: with_data)
